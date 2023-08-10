@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Smythe&display=swap');
+
+
+:root {
+    --white: whitesmoke;
+    --smythe: 'Smythe', cursive;
+}
+body {
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+} 
+
+ header {
+    display: flex;
+    flex-direction: column;
+    color: var(--white);
+    font-family: var(--smythe);
+    position: relative;
+}
+
+.header-headings { 
+ position: absolute;
+ top: 0;
+ left: 25px;
+}
+
+.header-headings h1, .header-headings h3 {
+    margin: 0 !important;
+}
+
+.header-image {
+    width: 100%;
+
+}
+
+#menu {
+    display: flex;
+    flex-direction: column;
+}
+
+.food-container {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: solid 1px #D2D2D2;
+    gap: 10px;
+}
+
+.food-container div {
+    align-self: center;
+}
+
+.menu-description {
+    width: 33.3%;
+    flex-wrap: wrap;
+}
+
+.add-item {
+    border: 2px solid #DEDEDE;
+    border-radius: 50%;
+    padding: 10px;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    justify-content: center;
+    margin-right: 10px;
+}
+
+.plus {
+    align-self: center;
+    font-size: 36px;
+}
+
+.remove, .plus {
+    cursor: pointer;
+}
