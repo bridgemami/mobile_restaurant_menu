@@ -2,6 +2,7 @@ import { menuArray } from "./data.js";
 
 let order = []
 
+
 document.addEventListener("click", function (e) {
   ;
   if (e.target.dataset.add) {
@@ -76,12 +77,11 @@ renderMenu()
 
 function renderOrder() {
   const orderEl =document.getElementById('order'); 
-  // let orderItemsHtml = `` 
   orderEl.innerHTML = `<h2>Your Order</h2>
                       <div>${ renderOrderItem()}</div>
                       <hr />
                       <h5>Total:</h5>
-                      <p>$</p>
+                      <p id="total">$${renderTotal()}</p>
                       <button id="order-btn">Complete Your Order</button>`
 
 }
@@ -95,4 +95,10 @@ function renderOrderItem () {
           ` 
 })
 return orderItemsHtml
+}
+
+function renderTotal () {
+  let orderTotal =0
+  order.forEach(price => orderTotal += price.price)
+  return orderTotal
 }
