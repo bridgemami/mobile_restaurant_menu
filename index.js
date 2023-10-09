@@ -2,6 +2,9 @@ import { menuArray } from "./data.js";
 
 let order = [];
 const paymentEl = document.getElementById("payment");
+const headerEl = document.getElementById("header");
+const menuEl = document.getElementById("menu");
+const orderEl = document.getElementById("order");
 
 document.addEventListener("click", function (e) {
   if (e.target.dataset.add) {
@@ -14,6 +17,9 @@ document.addEventListener("click", function (e) {
   }
   else if(e.target.id === "close"){
     paymentEl.classList.toggle("hide");
+    orderEl.classList.toggle("blackout")
+ menuEl.classList.toggle("blackout")
+ headerEl.classList.toggle("blackout")
   }
   else if(e.target.id === "payment-submitted") {
     e.preventDefault();
@@ -57,7 +63,7 @@ function getIndexFromOrder(id) {
 }
 
 function renderMenu() {
-  const menuEl = document.getElementById("menu");
+ // const menuEl = document.getElementById("menu");
   let menuHtml = ``;
   menuArray.forEach((food) => {
     menuHtml += `
@@ -83,12 +89,12 @@ function renderMenu() {
 renderMenu();
 
 function renderOrder() {
-  const orderEl = document.getElementById("order");
+//  const orderEl = document.getElementById("order");
   if (order.length > 0) {
     orderEl.innerHTML = `<h2>Your Order</h2>
                       <div>${renderOrderItem()}</div>
                       <hr />
-                      <div class="total-container">
+                      <div class="total-container" id="total-container">
                       <p>Total:<p>
                       <p id="total">$${renderTotal()}</p>
                       </div>
@@ -130,22 +136,65 @@ function renderPayment(e) {
 <input type="text" name="credit-card-number" placeholder="Enter credit card number" id="credit-card" required />
 <input type="text" name="credit-card-cvv" placeholder="Enter credit CVV" id="ccv" required />
 <button type="submit" name="payment" id="payment-submitted" class="btn-green"/>Pay</button>
+<p id="missing"></p>
 </form>`
+document.getElementById("total-container").scrollIntoView()
  paymentEl.classList.add("payment")
  paymentEl.classList.toggle("hide")
+ orderEl.classList.toggle("blackout")
+ menuEl.classList.toggle("blackout")
+ headerEl.classList.toggle("blackout")
 }
 
 
 function paymentRequirements (e) {
+  const missingEl =document.getElementById("missing")
   const nameEl = document.getElementById("name")
   const creditCardEl = document.getElementById("credit-card")
   const cvvEl = document.getElementById("ccv")
   if(nameEl.value.length > 2 && creditCardEl.value.length === 16 && cvvEl.value.length === 3) {
     document.querySelector("body").innerHTML = `<h2>Thank you ${nameEl.value} for your order!</h2>
                                                 <p>It should ready in ${10 * order.length} minutes.</p>
-                                                <p>The page will automatically go back to the ordering page in 20 seconds.</p>
+                                                <p>The page will automatically go back to the ordering page in 10 seconds.</p>
     `
-    setTimeout(() => location.reload(), 20000);
+    setTimeout(() => location.reload(), 10000);
+  }
+  else if (nameEl.value.length < 2 ) {
+      if(creditCardEl.value.length < 16  || creditCardEl.value.length > 16) {
+        missingEl.innerHTML = ''
+        missingEl.innerHTML = `<p>Please enter your 16 digit credit card number and name with more than 2 letters</p>`
+      }
+
+      else if(cvvEl.value.length >3 || cvvEl.value.length < 3) {
+        missingEl.innerHTML = ''
+        missingEl.innerHTML = `<p>Please enter your 3 digit credit card cvv code and name with more than 2 letters</p>`
+      }
+    else{
+      missingEl.innerHTML = ''
+      missingEl.innerHTML = `<p>Please enter name with more than 2 letters</p>`
+    }
+  }
+    else if (creditCardEl.value.length < 16  || creditCardEl.value.length > 16) {
+        if(cvvEl.value.length >3 || cvvEl.value.length < 3) {
+          missingEl.innerHTML = ''
+          missingEl.innerHTML = `<p>Please enter your 16 digit credit card number and 3 digit credit card cvv code</p>`
+
+        }
+        else {
+          missingEl.innerHTML = ''
+          missingEl.innerHTML = '<p>Please enter your 16 digit credit card number</p>'
+        }
+    }
+
+    else if(cvvEl.value.length >3 || cvvEl.value.length < 3){
+      missingEl.innerHTML = ''
+      missingEl.innerHTML = '<p>Please enter your 3 digit credit card cvv code</p>'
+    }
+  
+  else {
+    missingEl.innerHTML = ''
+    missingEl.innerHTML = `<p>Please enter all the information</p>`
   }
 
 }
+
