@@ -16,10 +16,7 @@ document.addEventListener("click", function (e) {
     renderPayment(e);
   }
   else if(e.target.id === "close"){
-    paymentEl.classList.toggle("hide");
-    orderEl.classList.toggle("blackout")
- menuEl.classList.toggle("blackout")
- headerEl.classList.toggle("blackout")
+    togglePaymentVisibility()
   }
   else if(e.target.id === "payment-submitted") {
     e.preventDefault();
@@ -28,6 +25,12 @@ document.addEventListener("click", function (e) {
   }
 });
 
+function togglePaymentVisibility () {
+ paymentEl.classList.toggle("hide")
+ orderEl.classList.toggle("whiteout")
+ menuEl.classList.toggle("whiteout")
+ headerEl.classList.toggle("whiteout")
+}
 
 function addSpace(arr) {
   
@@ -63,7 +66,6 @@ function getIndexFromOrder(id) {
 }
 
 function renderMenu() {
- // const menuEl = document.getElementById("menu");
   let menuHtml = ``;
   menuArray.forEach((food) => {
     menuHtml += `
@@ -89,7 +91,6 @@ function renderMenu() {
 renderMenu();
 
 function renderOrder() {
-//  const orderEl = document.getElementById("order");
   if (order.length > 0) {
     orderEl.innerHTML = `<h2>Your Order</h2>
                       <div>${renderOrderItem()}</div>
@@ -140,10 +141,7 @@ function renderPayment(e) {
 </form>`
 document.getElementById("total-container").scrollIntoView()
  paymentEl.classList.add("payment")
- paymentEl.classList.toggle("hide")
- orderEl.classList.toggle("whiteout")
- menuEl.classList.toggle("whiteout")
- headerEl.classList.toggle("whiteout")
+ togglePaymentVisibility()
 }
 
 
@@ -197,4 +195,3 @@ function paymentRequirements (e) {
   }
 
 }
-
