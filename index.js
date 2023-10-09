@@ -141,9 +141,9 @@ function renderPayment(e) {
 document.getElementById("total-container").scrollIntoView()
  paymentEl.classList.add("payment")
  paymentEl.classList.toggle("hide")
- orderEl.classList.toggle("blackout")
- menuEl.classList.toggle("blackout")
- headerEl.classList.toggle("blackout")
+ orderEl.classList.toggle("whiteout")
+ menuEl.classList.toggle("whiteout")
+ headerEl.classList.toggle("whiteout")
 }
 
 
