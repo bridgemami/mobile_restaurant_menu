@@ -1,5 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Smythe&display=swap');
 
+* {
+    box-sizing: border-box;
+}
 
 :root {
     --white: whitesmoke;
@@ -9,18 +12,25 @@ body {
     margin: 0;
     padding: 0;
     font-size: 16px;
+    font-family: var(--smythe);
+
 } 
 
  header {
     display: flex;
     flex-direction: column;
     color: var(--white);
-    font-family: var(--smythe);
+    width:100%;
+    background: url('./assets/ferks-guare-KEZdWfYD-ow-unsplash.png');
+    background-size: cover;
+    padding: 1em;
+}
+
+main {
     position: relative;
 }
 
 .header-headings { 
- position: absolute;
  top: 0;
  left: 25px;
 }
@@ -55,22 +65,146 @@ body {
     flex-wrap: wrap;
 }
 
-.add-item {
-    border: 2px solid #DEDEDE;
-    border-radius: 50%;
-    padding: 10px;
-    width: 25px;
-    height: 25px;
-    display: flex;
-    justify-content: center;
-    margin-right: 10px;
+.hidden {
+    display: none;
 }
 
-.plus {
+
+.add {
     align-self: center;
     font-size: 36px;
+    background: none;
+    border: 2px solid #DEDEDE;
+    border-radius: 49%;
+    padding: 10px;
+    width: 72px;
+    height: 72px;
+    cursor: pointer;
+    margin-right: 20px;
+}
+
+.add:hover {
+    background: skyblue;
+    border: 2px solid whitesmoke;
+    color:whitesmoke;
+
 }
 
 .remove, .plus {
     cursor: pointer;
+}
+
+.payment {
+    box-shadow: 10px 10px 10px 10px black;
+    color: black;
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    position: absolute;
+    top:60%;
+    left: 10%;
+    background: whitesmoke;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    gap: 10px;
+    padding-bottom: 10px;
+    /* position: relative; */
+}
+
+.hide {
+    display: none;
+}
+
+#close {
+    color:black;
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding-right: .25em;
+    cursor: pointer;
+}
+
+#close:hover {
+    font-size: 1.75rem;
+}
+
+.remove-btn {
+    background: none;
+    border: none;
+    font-size: .75rem;
+    text-align: center;
+}
+
+.btn-container {
+    display: flex;
+    align-items: center;
+}
+
+.order-items {
+    display: flex;
+    font-size: 1.5rem;
+    justify-content: space-between;
+}
+
+.order-item {
+    display: flex;
+}
+
+.grey {
+    color: #BBBBBB;
+}
+
+.btn-green {
+    width: 95%;
+    background: #16DB99;
+    color: #fff;
+    text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    padding: 1em 0;
+    cursor: pointer;
+    border: none;
+    font-weight: bold;
+    display: block;
+    margin: 0 auto 1em auto;
+}
+
+#order{
+    padding: 0 .5em;
+}
+
+.total-container {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.5rem;
+}
+
+.whiteout {
+    width: 100dvw;
+    opacity: 25%;
+}
+
+@media (min-width: 768px) {
+    header, main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .payment {
+        width: 40%;
+        left: 30%;          
+    }
+
+    #order, #menu {
+        width: 50%;
+    }
+    
 }
